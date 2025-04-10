@@ -1,6 +1,7 @@
 FROM golang:latest
-MAINTAINER xtaci <daniel820313@gmail.com>
-COPY . /go/src/agent
-RUN go install agent
-ENTRYPOINT ["/go/bin/agent"]
+WORKDIR /go/src/agent
+COPY . .
+RUN go mod download
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o agent .
 EXPOSE 8009 8009/udp
+CMD ["./agent"]
