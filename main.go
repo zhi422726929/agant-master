@@ -13,8 +13,8 @@ import (
 	"github.com/gonet2/agent/utils"
 
 	log "github.com/sirupsen/logrus"
-	"github.com/xtaci/kcp-go"
 	cli "github.com/urfave/cli/v2"
+	"github.com/xtaci/kcp-go"
 )
 
 type Config struct {
@@ -242,7 +242,6 @@ func udpServer(config *Config) {
 // the goroutine is used for reading incoming PACKETS
 // each packet is defined as :
 // | 2B size |     DATA       |
-//
 func handleClient(conn net.Conn, config *Config) {
 	defer utils.PrintPanicStack()
 	defer conn.Close()
